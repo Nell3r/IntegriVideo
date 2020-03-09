@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -16,6 +17,12 @@ import static org.testng.Assert.assertTrue;
 
 public class ChatPage extends BasePage {
     private final static By CHAT_INPUT = By.cssSelector("textarea");
+
+    public void sendMessage() {
+        driver.findElement(By.id("123")).click();
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".integri-message-text"), 2));
+
+    }
 
     public ChatPage(WebDriver driver) {
         super(driver);
@@ -103,5 +110,6 @@ public class ChatPage extends BasePage {
     public void assertError() {
         WebElement error = driver.findElement(By.cssSelector(".integri-notify.integri-notify-error"));
         assertEquals(error, error);
+        driver.findElement(By.xpath(""));
     }
 }
