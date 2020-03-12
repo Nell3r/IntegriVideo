@@ -28,9 +28,9 @@ public class ChatTest extends BaseTest {
     @Test
     public void sendText() {
         chatPage.openPage();
-        String result = chatPage.sendText("Text.txt");
+        chatPage.sendText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id maximus felis, et consectetur dui. Cras lobortis ligula dolor, at elementum libero laoreet eu. Praesent porta enim at nibh mollis imperdiet. Nullam dui risus, tempor eu suscipit vel, pulvinar vel tellus. Praesent tristique ultricies libero, fermentum tincidunt erat elementum vel. Aenean id orci pharetra, consectetur nulla ac, posuere diam. Nullam sodales orci neque, non interdum risus rhoncus non. Mauris ante nibh, sodales nec nisi ac, accumsan tempus sem. Vivamus consequat eros quis purus iaculis rhoncus. Vestibulum porta lorem odio, cursus tempor quam tincidunt vitae. Pellentesque vitae felis luctus, dapibus libero sit amet, mattis tortor. Donec sed ex leo");
         chatPage.enterSend();
-        chatPage.shouldHaveMessage(1, result.trim());
+        chatPage.messageShouldExist(1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id maximus felis, et consectetur dui. Cras lobortis ligula dolor, at elementum libero laoreet eu. Praesent porta enim at nibh mollis imperdiet. Nullam dui risus, tempor eu suscipit vel, pulvinar vel tellus. Praesent tristique ultricies libero, fermentum tincidunt erat elementum vel. Aenean id orci pharetra, consectetur nulla ac, posuere diam. Nullam sodales orci neque, non interdum risus rhoncus non. Mauris ante nibh, sodales nec nisi ac, accumsan tempus sem. Vivamus consequat eros quis purus iaculis rhoncus. Vestibulum porta lorem odio, cursus tempor quam tincidunt vitae. Pellentesque vitae felis luctus, dapibus libero sit amet, mattis tortor. Donec sed ex leo");
     }
 
     @Test
@@ -46,7 +46,7 @@ public class ChatTest extends BaseTest {
         chatPage.openPage();
         chatPage.writeText("<html><body><p>test</p></body></html>");
         chatPage.clickSend();
-        chatPage.messageShouldExist(1, "test");
+        chatPage.messageShouldExist(1, "<html><body><p>test</p></body></html>");
     }
 
     @Test
@@ -81,14 +81,6 @@ public class ChatTest extends BaseTest {
     @Test
     public void sendMessages() {
         chatPage.openPage();
-        for (int i = 0; i < 11; i++) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            chatPage.writeText("Test");
-            chatPage.clickSend();
-        }
+        chatPage.sendMessages("test");
     }
 }

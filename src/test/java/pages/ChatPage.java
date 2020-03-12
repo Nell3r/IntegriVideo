@@ -1,15 +1,13 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -60,32 +58,8 @@ public class ChatPage extends BasePage {
         driver.findElement(CHAT_INPUT).sendKeys(Keys.ENTER);
     }
 
-    public String sendText(String fileName) {
-        String result = "";
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
-        try {
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                result = String.join(" ", result, line);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        driver.findElement(CHAT_INPUT).sendKeys(result);
-        return result;
-    }
-
-    public void shouldHaveMessage(int messageIndex, String text) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        List<WebElement> messages = driver.findElements(By.cssSelector(".integri-chat-message-text"));
-        String messageText = messages.get(messageIndex - 1).getText();
-        assertEquals(messageText, text);
+    public void sendText(String text) {
+        driver.findElement(CHAT_INPUT).sendKeys(text);
     }
 
     public void formatMessage(String text) {
@@ -101,7 +75,15 @@ public class ChatPage extends BasePage {
     }
 
     public void assertError() {
-        WebElement error = driver.findElement(By.cssSelector(".integri-notify.integri-notify-error"));
-        assertEquals(error, error);
+        String error = driver.findElement(By.cssSelector(".integri-notify.integri-notify-error")).getText();
+        assertEquals(error, "Message cannot be empty!");
+    }
+
+    public void sendMessages(String text) {
+        for (int i = 0; i < 11; i++) {
+            driver.findElement(CHAT_INPUT).sendKeys(text);
+            driver.findElement(CHAT_INPUT).sendKeys(Keys.ENTER);
+            wait.until(ExpectedConditions.numberOfElementsToBe((By) driver.findElements(By.cssSelector(".integri-chat-message-text")), 1));
+        }
     }
 }
