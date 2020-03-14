@@ -8,7 +8,6 @@ public class SettingModalTest extends BaseTest {
         chatPage.openPage();
         chatPage.writeText("test");
         chatPage.clickSend();
-        settingModal.assertUserName("Guest");
         settingModal.openSettings();
         settingModal.changeName("Test");
         settingModal.clickSave();

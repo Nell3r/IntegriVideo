@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class SettingModal extends BasePage {
     public SettingModal(WebDriver driver) {
@@ -37,9 +36,9 @@ public class SettingModal extends BasePage {
 
     public void assertUserName(String name) {
         WebElement username = driver.findElement(By.cssSelector(".integri-session-user-name"));
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".integri-session-user-name"))));
-        boolean nameExist = username.getText().equals(name);
-        assertTrue(nameExist, "Не правильное имя");
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".integri-session-user-name"), name));
+        String nameExist = username.getText();
+        assertEquals(nameExist, name, "Не правильное имя");
     }
 
     public void assertEmailUser(String mail) {
