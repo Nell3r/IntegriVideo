@@ -37,11 +37,7 @@ public class ChatPage extends BasePage {
     }
 
     public void messageShouldExist(int messageIndex, String text) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".integri-chat-message")));
         List<WebElement> messages = driver.findElements(By.cssSelector(".integri-chat-message-text"));
         boolean isExist = messages.get(messageIndex - 1).getText().equals(text);
         assertTrue(isExist, "Message do not exist");
@@ -85,10 +81,21 @@ public class ChatPage extends BasePage {
     }
 
     public void sendMessages(String text) {
-        for (int i = 0; i < 11; i++) {
+        for (int i = 1; i < 12; i++) {
             driver.findElement(CHAT_INPUT).sendKeys(text);
             driver.findElement(CHAT_INPUT).sendKeys(Keys.ENTER);
-            wait.until(ExpectedConditions.numberOfElementsToBe((By) driver.findElements(By.cssSelector(".integri-chat-message-text")), 1));
+            if (i != 11) {
+                wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".integri-chat-message-text"), i));
+            } else {
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".close-demo-screen")));
+            }
+
         }
+    }
+
+    public void messagesAssert(String a) {
+        WebElement closeScreen = driver.findElement(By.cssSelector(".close-demo-screen"));
+        String textScreen = closeScreen.getText();
+        assertEquals(textScreen, a, "ошибка не появилась");
     }
 }

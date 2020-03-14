@@ -82,5 +82,6 @@ public class ChatTest extends BaseTest {
     public void sendMessages() {
         chatPage.openPage();
         chatPage.sendMessages("test");
+        chatPage.messagesAssert("Skip");
     }
 }

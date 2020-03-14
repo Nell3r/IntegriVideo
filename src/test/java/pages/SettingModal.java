@@ -48,8 +48,9 @@ public class SettingModal extends BasePage {
     }
 
     public void assertURLPhoto(String URL) {
+        wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector(".integri-user-pic"))));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".integri-user-pic")));
         String urlstyle = driver.findElement(By.cssSelector(".integri-user-pic")).getAttribute("style");
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".integri-user-pic"))));
-        assertEquals(urlstyle, "background-image: url(" + URL + ")", "Фото не поменялось");
+        assertEquals(urlstyle, "background-image: url(\"" + URL + "\");", "Фото не поменялось");
     }
 }
