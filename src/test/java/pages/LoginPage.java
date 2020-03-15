@@ -1,5 +1,6 @@
 package pages;
 
+import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,9 +46,10 @@ public class LoginPage extends BasePage {
         isPageOpened();
         return this;
     }
-//    public void login(User,User){
-//        email(User);
-//        password("qwer1234");
-//        clickLogin();
-//    }
+
+    public void login(User user){
+        email(user.getEmail());
+        password(user.getPassword());
+        loginButton.click();
+    }
 }

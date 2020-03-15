@@ -1,6 +1,8 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.awt.*;
@@ -13,23 +15,27 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ChatPage extends BasePage {
-    private final static By CHAT_INPUT = By.cssSelector("textarea");
+    @FindBy(css = "textarea")
+    WebElement textarea;
 
     public ChatPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver,this);
     }
 
     public BasePage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOf(textarea));
         return this;
     }
 
     public BasePage openPage() {
         driver.get("https://dev.integrivideo.com/demo/chat/new");
+        isPageOpened();
         return this;
     }
 
     public void writeText(String text) {
-        driver.findElement(CHAT_INPUT).sendKeys(text);
+        textarea.sendKeys(text);
     }
 
     public void clickSend() {
@@ -43,7 +49,7 @@ public class ChatPage extends BasePage {
         assertTrue(isExist, "Message do not exist");
     }
 
-    public void inviteUser() {
+    public void inviteUserButton() {
         driver.findElement(By.id("invite-users-to-chat")).click();
         try {
             String data = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
@@ -56,11 +62,11 @@ public class ChatPage extends BasePage {
     }
 
     public void enterSend() {
-        driver.findElement(CHAT_INPUT).sendKeys(Keys.ENTER);
+        textarea.sendKeys(Keys.ENTER);
     }
 
     public void sendText(String text) {
-        driver.findElement(CHAT_INPUT).sendKeys(text);
+        textarea.sendKeys(text);
     }
 
     public void formatMessage(String text) {
@@ -82,20 +88,19 @@ public class ChatPage extends BasePage {
 
     public void sendMessages(String text) {
         for (int i = 1; i < 12; i++) {
-            driver.findElement(CHAT_INPUT).sendKeys(text);
-            driver.findElement(CHAT_INPUT).sendKeys(Keys.ENTER);
+            textarea.sendKeys(text);
+            textarea.sendKeys(Keys.ENTER);
             if (i != 11) {
                 wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".integri-chat-message-text"), i));
             } else {
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".close-demo-screen")));
             }
-
         }
     }
 
-    public void messagesAssert(String a) {
+    public void messagesAssert(String textButtonAlert) {
         WebElement closeScreen = driver.findElement(By.cssSelector(".close-demo-screen"));
         String textScreen = closeScreen.getText();
-        assertEquals(textScreen, a, "ошибка не появилась");
+        assertEquals(textScreen, textButtonAlert, "ошибка не появилась");
     }
 }

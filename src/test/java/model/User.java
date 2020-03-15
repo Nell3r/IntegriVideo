@@ -1,24 +1,46 @@
 package model;
 
 public class User {
-    String mail;
+    String email;
     String password;
+    String UrlPhoto;
+    String Name;
 
-    public User(String mail, String password) {
-        this.mail = mail;
+    public User(String email, String password) {
+        this.email = email;
         this.password = password;
     }
+    public User(){}
 
-    public User(String password) {
+    public User(String email, String password, String urlPhoto, String name) {
+        this.email = email;
         this.password = password;
+        UrlPhoto = urlPhoto;
+        Name = name;
     }
 
-    public String getMail() {
-        return mail;
+    public String getUrlPhoto() {
+        return UrlPhoto;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setUrlPhoto(String urlPhoto) {
+        UrlPhoto = urlPhoto;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -29,3 +51,4 @@ public class User {
         this.password = password;
     }
 }
+

@@ -1,6 +1,9 @@
 package tests;
 
+import model.User;
 import org.junit.Test;
+
+import static org.graalvm.compiler.options.OptionType.User;
 
 
 public class ChatTest extends BaseTest {
@@ -15,7 +18,7 @@ public class ChatTest extends BaseTest {
     @Test
     public void inviteButton() {
         chatPage.openPage();
-        chatPage.inviteUser();
+        chatPage.inviteUserButton();
     }
 
     @Test

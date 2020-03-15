@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import pages.ChatPage;
 import pages.FileUploadModal;
+import pages.LoginPage;
 import pages.SettingModal;
 
 import java.util.concurrent.TimeUnit;
@@ -14,6 +15,7 @@ public class BaseTest {
     private WebDriver driver;
     FileUploadModal fileUploadModal;
     SettingModal settingModal;
+    LoginPage loginPage;
 
     @BeforeMethod
     public void setDriver() {
@@ -24,6 +26,7 @@ public class BaseTest {
         chatPage = new ChatPage(driver);
         fileUploadModal = new FileUploadModal(driver);
         settingModal = new SettingModal(driver);
+        loginPage = new LoginPage(driver);
     }
 
     //@AfterMethod(alwaysRun = true)

@@ -12,6 +12,6 @@ public abstract class BasePage {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, 20);
     }
-//    public abstract BasePage isPageOpened();
-//    public abstract BasePage openPage();
+   public abstract BasePage isPageOpened();
+   public abstract BasePage openPage();
 }

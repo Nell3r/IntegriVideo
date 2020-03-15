@@ -8,7 +8,7 @@ public class FileUploadModalTest extends BaseTest {
     @Test
     public void uploadfile() {
         chatPage.openPage();
-        fileUploadModal.openLoader();
+        fileUploadModal.openPage();
         fileUploadModal.upLoadFile("Text.txt");
         fileUploadModal.assertUpload(1);
     }
@@ -16,9 +16,9 @@ public class FileUploadModalTest extends BaseTest {
     @Test
     public void uploadFiles() {
         chatPage.openPage();
-        fileUploadModal.openLoader();
+        fileUploadModal.openPage();
         fileUploadModal.upLoadFile("Text.txt ");
-        fileUploadModal.openLoader();
+        fileUploadModal.openPage();
         fileUploadModal.upLoadFile("Тестовый файл.docx");
         fileUploadModal.assertUpload(2);
 
