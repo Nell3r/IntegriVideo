@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 public class FileUploadModal extends BasePage {
     public FileUploadModal(WebDriver driver) {
@@ -22,12 +22,12 @@ public class FileUploadModal extends BasePage {
         WebElement upload = driver.findElement(By.xpath("//input[@type='file']"));
         upload.sendKeys(file);
         driver.findElement(By.cssSelector(".integri-file-upload-start")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".integri-chat-message-container")));
     }
 
-    public void assertUpload(int fileIndex) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".integri-chat-message-text")));
-        List<WebElement> files = driver.findElements(By.cssSelector(".integri-chat-message-text"));
-        Boolean isExist = files.get(fileIndex - 1).isEnabled();
-        assertTrue(isExist);
+    public void assertUpload(int numberOfElements) {
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".integri-chat-message-container")));
+        List<WebElement> files = driver.findElements(By.cssSelector(".integri-chat-message-container"));
+        assertEquals(files.size(), numberOfElements);
     }
 }
