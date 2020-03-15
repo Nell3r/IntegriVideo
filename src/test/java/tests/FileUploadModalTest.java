@@ -2,12 +2,14 @@ package tests;
 
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 public class FileUploadModalTest extends BaseTest {
     @Test
     public void uploadfile() {
         chatPage.openPage();
         fileUploadModal.openLoader();
-        fileUploadModal.upLoadFile("C:/Users/User/IdeaProjects/IntegriVideo/src/main/resources/Text.txt");
+        fileUploadModal.upLoadFile("Text.txt");
         fileUploadModal.assertUpload(1);
     }
 
@@ -15,9 +17,9 @@ public class FileUploadModalTest extends BaseTest {
     public void uploadFiles() {
         chatPage.openPage();
         fileUploadModal.openLoader();
-        fileUploadModal.upLoadFile("C:/Users/User/IdeaProjects/IntegriVideo/src/main/resources/Text.txt");
+        fileUploadModal.upLoadFile("Text.txt ");
         fileUploadModal.openLoader();
-        fileUploadModal.upLoadFile("C:/Users/User/IdeaProjects/IntegriVideo/src/main/resources/Тестовый файл.docx");
+        fileUploadModal.upLoadFile("Тестовый файл.docx");
         fileUploadModal.assertUpload(2);
 
     }

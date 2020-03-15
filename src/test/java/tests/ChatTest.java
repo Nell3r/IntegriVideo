@@ -1,6 +1,7 @@
 package tests;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+
 
 public class ChatTest extends BaseTest {
     @Test
