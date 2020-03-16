@@ -4,8 +4,6 @@ import model.User;
 import org.testng.annotations.Test;
 
 public class SettingModalTest extends BaseTest {
-    User user = new User("devintegri@mailinator.com","qwer1234","https://sun9-47.userapi.com/c836533/v836533215/12ff/G8OnjPQdLnU.jpg?ava=1","Test");
-
     @Test
     public void changeUserName() {
         settingModal.openPage();

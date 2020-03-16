@@ -3,7 +3,6 @@ package tests;
 import model.User;
 import org.junit.Test;
 
-import static org.graalvm.compiler.options.OptionType.User;
 
 
 public class ChatTest extends BaseTest {

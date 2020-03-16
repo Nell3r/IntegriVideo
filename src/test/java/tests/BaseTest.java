@@ -1,21 +1,22 @@
 package tests;
 
+import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
-import pages.ChatPage;
-import pages.FileUploadModal;
-import pages.LoginPage;
-import pages.SettingModal;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    ChatPage chatPage;
     private WebDriver driver;
+    User user = new User("devintegri@mailinator.com","qwer1234","https://sun9-47.userapi.com/c836533/v836533215/12ff/G8OnjPQdLnU.jpg?ava=1","Test");
+    ChatPage chatPage;
     FileUploadModal fileUploadModal;
     SettingModal settingModal;
     LoginPage loginPage;
+    AppPage appPage;
+    SignUpPage signUpPage;
 
     @BeforeMethod
     public void setDriver() {
@@ -27,6 +28,8 @@ public class BaseTest {
         fileUploadModal = new FileUploadModal(driver);
         settingModal = new SettingModal(driver);
         loginPage = new LoginPage(driver);
+        appPage = new AppPage(driver);
+        signUpPage = new SignUpPage(driver);
     }
 
     //@AfterMethod(alwaysRun = true)

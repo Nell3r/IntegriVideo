@@ -23,12 +23,12 @@ public class ChatPage extends BasePage {
         PageFactory.initElements(driver,this);
     }
 
-    public BasePage isPageOpened() {
+    public ChatPage isPageOpened() {
         wait.until(ExpectedConditions.visibilityOf(textarea));
         return this;
     }
 
-    public BasePage openPage() {
+    public ChatPage openPage() {
         driver.get("https://dev.integrivideo.com/demo/chat/new");
         isPageOpened();
         return this;

@@ -3,8 +3,8 @@ package model;
 public class User {
     String email;
     String password;
-    String UrlPhoto;
-    String Name;
+    String urlPhoto;
+    String name;
 
     public User(String email, String password) {
         this.email = email;
@@ -15,24 +15,24 @@ public class User {
     public User(String email, String password, String urlPhoto, String name) {
         this.email = email;
         this.password = password;
-        UrlPhoto = urlPhoto;
-        Name = name;
+        this.urlPhoto = urlPhoto;
+        this.name = name;
     }
 
     public String getUrlPhoto() {
-        return UrlPhoto;
+        return urlPhoto;
     }
 
     public void setUrlPhoto(String urlPhoto) {
-        UrlPhoto = urlPhoto;
+        urlPhoto = urlPhoto;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     public String getEmail() {

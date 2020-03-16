@@ -8,6 +8,16 @@ public class AppPage extends BasePage {
         super(driver);
     }
 
+    @Override
+    public AppPage isPageOpened() {
+        return this;
+    }
+
+    @Override
+    public AppPage openPage() {
+        return this;
+    }
+
     public void addProject() {
         driver.findElement(By.cssSelector(".iv-icon-file-add")).click();
     }

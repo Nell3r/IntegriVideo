@@ -17,7 +17,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(driver,this);
     }
 
     public LoginPage isPageOpened() {
@@ -34,22 +34,22 @@ public class LoginPage extends BasePage {
         passwordField.sendKeys(password);
         return this;
     }
-
-    //    public AppPage clickLogin(){
-//        loginButton.click();
-//        AppPage projects = new AppPage(driver);
-//        projects.isPageOpened();
-//        return projects;
-//    }
+    public AppPage clickLogin(){
+        loginButton.click();
+        AppPage projects = new AppPage(driver);
+        projects.isPageOpened();
+        return projects;
+    }
     public LoginPage openPage() {
         driver.get("https://dev.integrivideo.com/login");
         isPageOpened();
         return this;
     }
 
-    public void login(User user){
+    public LoginPage login (User user){
         email(user.getEmail());
         password(user.getPassword());
-        loginButton.click();
+        clickLogin();
+        return this;
     }
 }
