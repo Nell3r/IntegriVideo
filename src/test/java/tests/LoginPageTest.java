@@ -1,6 +1,6 @@
 package tests;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class LoginPageTest extends BaseTest {
     @Test
@@ -9,6 +9,6 @@ public class LoginPageTest extends BaseTest {
                 .openPage()
                 .login(user)
                 .clickLogin()
-                .addProject();
+                .addProjectButton();
     }
 }

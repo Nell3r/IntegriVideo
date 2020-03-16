@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     private WebDriver driver;
-    User user = new User("devintegri@mailinator.com","qwer1234","https://sun9-47.userapi.com/c836533/v836533215/12ff/G8OnjPQdLnU.jpg?ava=1","Test");
+    User user = new User("devintegriden@mailinator.com","qwer1234","https://sun9-47.userapi.com/c836533/v836533215/12ff/G8OnjPQdLnU.jpg?ava=1","Test");
     ChatPage chatPage;
     FileUploadModal fileUploadModal;
     SettingModal settingModal;

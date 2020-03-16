@@ -1,7 +1,7 @@
 package tests;
 
 import model.User;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 
 

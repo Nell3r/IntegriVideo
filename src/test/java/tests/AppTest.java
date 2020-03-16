@@ -6,15 +6,15 @@ import org.testng.annotations.Test;
 public class AppTest extends BaseTest {
     @Test
     public void addProject() {
+        appPage.openPage();
         loginPage.login(user);
-        appPage.addProject();
-        appPage.createForm("tut.by", "tut.by");
-    }
-
-    @Test
-    public void yourProject() {
-        addProject();
-        appPage.projectButton();
-        appPage.yourProject();
+        appPage.addProjectButton();
+        appPage
+                .projectName("Test")
+                .projectDescription("Test")
+                .projectDomain(1,"test.com")
+                .projectDomain(2,"test2.com")
+                .createButton();
+        appPage.verificationProject(1);
     }
 }

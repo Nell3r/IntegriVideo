@@ -16,13 +16,12 @@ public class FileUploadModal extends BasePage {
         super(driver);
     }
 
-    public BasePage isPageOpened() {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement ((By.cssSelector("integri-file-upload-start")))));
+    public FileUploadModal isPageOpened() {
+        wait.until(ExpectedConditions.presenceOfElementLocated((By.cssSelector(".integri-modal-shown"))));
         return this;
     }
 
-    public BasePage openPage() {
-        driver.get("https://dev.integrivideo.com/demo/chat/new");
+    public FileUploadModal openPage() {
         driver.findElement(By.cssSelector(".integri-chat-manual-upload")).click();
         isPageOpened();
         return this;
@@ -33,7 +32,6 @@ public class FileUploadModal extends BasePage {
         WebElement upload = driver.findElement(By.xpath("//input[@type='file']"));
         upload.sendKeys(file);
         driver.findElement(By.cssSelector(".integri-file-upload-start")).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".integri-chat-type-file")));
     }
 
     public void assertUpload(int numberOfElements) {
